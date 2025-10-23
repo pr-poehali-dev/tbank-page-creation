@@ -1,146 +1,126 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import Icon from "@/components/ui/icon";
+import { useState } from "react";
 
 const Index = () => {
-  const benefits = [
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    message: ""
+  });
+
+  const services = [
     {
-      icon: "Zap",
-      title: "Быстрое открытие",
-      description: "Открытие счёта онлайн за 10 минут без визита в офис"
+      icon: "Scale",
+      title: "Раздел имущества",
+      description: "Защита ваших интересов при разделе совместно нажитого имущества. Грамотное составление исковых заявлений и представительство в суде.",
+      features: ["Оценка имущества", "Досудебное урегулирование", "Судебное представительство"]
+    },
+    {
+      icon: "Users",
+      title: "Определение места жительства детей",
+      description: "Помощь в решении споров о месте проживания ребенка. Защита прав и интересов детей при раздельном проживании родителей.",
+      features: ["Подготовка документов", "Участие органов опеки", "Судебная защита"]
+    },
+    {
+      icon: "ShieldAlert",
+      title: "Лишение родительских прав",
+      description: "Юридическое сопровождение дел о лишении родительских прав при наличии оснований, предусмотренных законом.",
+      features: ["Сбор доказательств", "Работа с органами опеки", "Судебное разбирательство"]
+    }
+  ];
+
+  const advantages = [
+    {
+      icon: "Award",
+      title: "Опыт более 10 лет",
+      description: "Успешно решили более 500 дел в области семейного права"
+    },
+    {
+      icon: "CheckCircle2",
+      title: "Индивидуальный подход",
+      description: "Каждое дело уникально — разрабатываем стратегию под вашу ситуацию"
     },
     {
       icon: "Shield",
-      title: "Безопасность",
-      description: "Защита средств и данных по стандартам ЦБ РФ"
+      title: "Конфиденциальность",
+      description: "Гарантируем полную конфиденциальность и защиту личных данных"
     },
     {
-      icon: "Smartphone",
-      title: "Мобильный банк",
-      description: "Управление бизнесом из приложения в любое время"
-    },
-    {
-      icon: "DollarSign",
-      title: "Без комиссий",
-      description: "0₽ за открытие и ведение расчётного счёта"
-    },
-    {
-      icon: "TrendingUp",
-      title: "Начисление процентов",
-      description: "До 10% годовых на остаток по счёту"
-    },
-    {
-      icon: "HeadphonesIcon",
-      title: "Поддержка 24/7",
-      description: "Круглосуточная техподдержка по всем вопросам"
+      icon: "Clock",
+      title: "Быстрое реагирование",
+      description: "Оперативно отвечаем на обращения и начинаем работу"
     }
   ];
 
-  const tariffs = [
+  const steps = [
     {
-      name: "Базовый",
-      price: "0₽",
-      period: "/мес",
-      description: "Для начинающих предпринимателей",
-      features: [
-        "0₽ открытие и обслуживание",
-        "До 10 платежей бесплатно",
-        "Интернет-банк и приложение",
-        "Выпуск карты 0₽",
-        "Кэшбэк до 5%"
-      ],
-      popular: false
+      number: "01",
+      title: "Консультация",
+      description: "Бесплатная первичная консультация для анализа вашей ситуации"
     },
     {
-      name: "Бизнес",
-      price: "490₽",
-      period: "/мес",
-      description: "Для активно растущего бизнеса",
-      features: [
-        "Всё из тарифа Базовый",
-        "100 платежей бесплатно",
-        "8% годовых на остаток",
-        "Бесплатные уведомления",
-        "Личный менеджер",
-        "Кэшбэк до 10%"
-      ],
-      popular: true
+      number: "02",
+      title: "Стратегия",
+      description: "Разработка индивидуальной правовой стратегии решения вопроса"
     },
     {
-      name: "Премиум",
-      price: "1490₽",
-      period: "/мес",
-      description: "Для крупного бизнеса",
-      features: [
-        "Всё из тарифа Бизнес",
-        "Безлимитные платежи",
-        "10% годовых на остаток",
-        "Приоритетная поддержка",
-        "Бухгалтерия и сервисы",
-        "Кэшбэк до 15%"
-      ],
-      popular: false
+      number: "03",
+      title: "Документы",
+      description: "Подготовка всех необходимых документов и обращений"
+    },
+    {
+      number: "04",
+      title: "Результат",
+      description: "Представительство в суде и достижение нужного результата"
     }
   ];
 
-  const reviews = [
-    {
-      name: "Алексей Иванов",
-      company: "ИП Иванов",
-      rating: 5,
-      text: "Открыл счёт за 15 минут прямо с телефона. Никаких походов в банк, всё очень удобно. Рекомендую!"
-    },
-    {
-      name: "Мария Петрова",
-      company: "ООО \"Петрова и Ко\"",
-      rating: 5,
-      text: "Отличное приложение, всегда вижу актуальный баланс. Поддержка реально работает 24/7 — проверено!"
-    },
-    {
-      name: "Дмитрий Смирнов",
-      company: "ООО \"ТехноСтарт\"",
-      rating: 5,
-      text: "Перешли с другого банка на Т-Банк. Проценты на остаток — приятный бонус. За 3 месяца ни одной проблемы."
-    }
-  ];
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-blue-700 to-primary">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 py-20 lg:py-32 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <Badge className="mb-6 bg-secondary text-black hover:bg-secondary/90 text-sm font-semibold px-4 py-1.5">
-                Открытие за 10 минут
+              <Badge className="mb-6 bg-white text-primary hover:bg-white/90 text-sm font-semibold px-4 py-1.5">
+                Бесплатная консультация
               </Badge>
               <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Расчётный счёт для бизнеса в Т-Банке
+                Юридическая помощь в семейных спорах
               </h1>
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Откройте счёт онлайн без визита в офис. 0₽ за обслуживание, до 10% на остаток и круглосуточная поддержка.
+              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                Профессиональная защита ваших интересов при разделе имущества, определении места жительства детей и лишении родительских прав.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-black font-semibold text-lg px-8 py-6">
-                  Открыть счёт
-                  <Icon name="ArrowRight" className="ml-2" size={20} />
+                <Button size="lg" className="bg-white hover:bg-gray-100 text-primary font-semibold text-lg px-8 py-6">
+                  Получить консультацию
+                  <Icon name="Phone" className="ml-2" size={20} />
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black font-semibold text-lg px-8 py-6">
-                  Узнать больше
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-semibold text-lg px-8 py-6">
+                  Наши услуги
                 </Button>
               </div>
             </div>
             
             <div className="animate-scale-in hidden lg:block">
               <img 
-                src="https://cdn.poehali.dev/projects/4bdc0a63-f661-46e0-822f-e449afad5164/files/222f4c1f-7c7b-4cce-bb68-21c73beaa197.jpg" 
-                alt="Бизнес с Т-Банком" 
+                src="https://cdn.poehali.dev/projects/4bdc0a63-f661-46e0-822f-e449afad5164/files/0d714dc2-309c-40fc-9b80-2643cd227f00.jpg" 
+                alt="Юридические услуги" 
                 className="rounded-2xl shadow-2xl w-full"
               />
             </div>
@@ -148,33 +128,40 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Services Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-black mb-4">
-              Преимущества для вашего бизнеса
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Наши услуги
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Всё необходимое для эффективного управления финансами вашей компании
+              Специализируемся на решении самых сложных семейных споров
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
+          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {services.map((service, index) => (
               <Card 
                 key={index} 
-                className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-l-4 border-l-secondary bg-white"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white border-t-4 border-t-primary"
               >
                 <CardHeader>
-                  <div className="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
-                    <Icon name={benefit.icon as any} size={28} className="text-black" />
+                  <div className="w-16 h-16 bg-secondary rounded-xl flex items-center justify-center mb-4">
+                    <Icon name={service.icon as any} size={32} className="text-primary" />
                   </div>
-                  <CardTitle className="text-2xl font-bold">{benefit.title}</CardTitle>
+                  <CardTitle className="text-2xl font-bold mb-3">{service.title}</CardTitle>
+                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                  <ul className="space-y-3">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <Icon name="Check" size={18} className="text-primary flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             ))}
@@ -182,124 +169,176 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Tariffs Section */}
+      {/* Advantages Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-black mb-4">
-              Тарифы
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Почему выбирают нас
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Выберите подходящий тариф для вашего бизнеса
+              Ваша уверенность в завтрашнем дне — наша главная цель
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {tariffs.map((tariff, index) => (
-              <Card 
-                key={index} 
-                className={`relative hover:shadow-2xl transition-all duration-300 ${
-                  tariff.popular 
-                    ? 'border-2 border-secondary scale-105 shadow-xl' 
-                    : 'hover:-translate-y-2'
-                }`}
-              >
-                {tariff.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-secondary text-black font-bold px-4 py-1.5">
-                      Популярный
-                    </Badge>
-                  </div>
-                )}
-                
-                <CardHeader className="text-center pb-8">
-                  <CardTitle className="text-2xl font-bold mb-2">{tariff.name}</CardTitle>
-                  <CardDescription className="text-base mb-4">{tariff.description}</CardDescription>
-                  <div className="flex items-baseline justify-center">
-                    <span className="text-5xl font-bold text-black">{tariff.price}</span>
-                    <span className="text-gray-600 ml-2">{tariff.period}</span>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  {tariff.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <Icon name="CheckCircle2" size={20} className="text-secondary flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                  
-                  <Button 
-                    className={`w-full mt-6 ${
-                      tariff.popular 
-                        ? 'bg-secondary hover:bg-secondary/90 text-black' 
-                        : 'bg-black hover:bg-gray-800 text-white'
-                    } font-semibold py-6`}
-                  >
-                    Выбрать тариф
-                  </Button>
-                </CardContent>
-              </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {advantages.map((advantage, index) => (
+              <div key={index} className="text-center animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                <div className="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Icon name={advantage.icon as any} size={36} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">{advantage.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{advantage.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Reviews Section */}
+      {/* Process Steps Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-black mb-4">
-              Отзывы клиентов
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Как мы работаем
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Более 50 000 предпринимателей уже работают с Т-Банком
+              Прозрачный процесс от консультации до результата
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {reviews.map((review, index) => (
-              <Card key={index} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white">
-                <CardHeader>
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Icon key={i} name="Star" size={18} className="fill-secondary text-secondary" />
-                    ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {steps.map((step, index) => (
+              <div key={index} className="relative">
+                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                  <div className="text-6xl font-bold text-secondary mb-4">{step.number}</div>
+                  <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <Icon name="ArrowRight" size={24} className="text-secondary" />
                   </div>
-                  <CardTitle className="text-xl font-bold">{review.name}</CardTitle>
-                  <CardDescription>{review.company}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 leading-relaxed italic">"{review.text}"</p>
-                </CardContent>
-              </Card>
+                )}
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-black text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Готовы начать?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Откройте расчётный счёт прямо сейчас и получите доступ ко всем возможностям Т-Банка
-          </p>
-          <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-black font-semibold text-lg px-10 py-6">
-            Открыть счёт бесплатно
-            <Icon name="ArrowRight" className="ml-2" size={20} />
-          </Button>
+      {/* Contact Form Section */}
+      <section className="py-20 bg-primary text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+                Запишитесь на консультацию
+              </h2>
+              <p className="text-xl text-blue-100">
+                Оставьте заявку, и мы свяжемся с вами в ближайшее время
+              </p>
+            </div>
+
+            <Card className="bg-white">
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">
+                      Ваше имя *
+                    </label>
+                    <Input 
+                      placeholder="Иван Иванов"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      required
+                      className="text-lg py-6"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">
+                      Телефон *
+                    </label>
+                    <Input 
+                      type="tel"
+                      placeholder="+7 (___) ___-__-__"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      required
+                      className="text-lg py-6"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">
+                      Опишите вашу ситуацию
+                    </label>
+                    <Textarea 
+                      placeholder="Расскажите кратко о вашей проблеме..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      rows={5}
+                      className="text-lg"
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit"
+                    size="lg" 
+                    className="w-full bg-primary hover:bg-blue-700 text-white font-semibold text-lg py-6"
+                  >
+                    Отправить заявку
+                    <Icon name="Send" className="ml-2" size={20} />
+                  </Button>
+
+                  <p className="text-sm text-gray-500 text-center">
+                    Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-gray-900 text-gray-400 text-center">
+      <footer className="py-12 bg-gray-900 text-gray-400">
         <div className="container mx-auto px-4">
-          <p className="text-sm">
-            © 2025 Т-Банк. Все права защищены.
-          </p>
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <h3 className="text-white font-bold text-xl mb-4">Контакты</h3>
+              <div className="space-y-2">
+                <p className="flex items-center gap-2">
+                  <Icon name="Phone" size={18} />
+                  +7 (___) ___-__-__
+                </p>
+                <p className="flex items-center gap-2">
+                  <Icon name="Mail" size={18} />
+                  info@lawfirm.ru
+                </p>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-white font-bold text-xl mb-4">Услуги</h3>
+              <ul className="space-y-2">
+                <li>Раздел имущества</li>
+                <li>Определение места жительства детей</li>
+                <li>Лишение родительских прав</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-white font-bold text-xl mb-4">График работы</h3>
+              <p>Пн-Пт: 9:00 - 19:00</p>
+              <p>Сб: 10:00 - 16:00</p>
+              <p>Вс: выходной</p>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 pt-8 text-center text-sm">
+            <p>© 2025 Юридическая фирма. Все права защищены.</p>
+          </div>
         </div>
       </footer>
     </div>
